@@ -15,5 +15,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::controller(PageController::class)->group(function () {
-    Route::get('/', 'viewHomePage')->name('home.page');
+    Route::get('/', 'viewHomePage')->middleware('auth')->name('home.page');
+    Route::get('/login', 'viewLoginPage')->name('login.page');
 });
