@@ -15,4 +15,9 @@ class PageController extends Controller
     {
         return view('authentication.login');
     }
+
+    public function viewRegisterPage()
+    {
+        return view('authentication.register');
+    }
 }

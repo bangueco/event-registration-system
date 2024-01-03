@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,5 +21,17 @@ class AuthController extends Controller
             'usernameLogin' => 'Username do not match any existing records',
             'passwordLogin' => 'Password do not match any existing records'
         ])->onlyInput(['usernameLogin', 'passwordLogin']);
+    }
+
+    public function register(Request $r)
+    {
+        $userInfo = $r->only(['username', 'password']);
+
+        User::create([
+            'username' => $userInfo['username'],
+            'password' => $userInfo['password']
+        ]);
+
+        return redirect()->back();
     }
 }
