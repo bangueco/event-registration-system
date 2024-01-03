@@ -18,8 +18,10 @@ use Illuminate\Support\Facades\Route;
 Route::controller(PageController::class)->group(function () {
     Route::get('/', 'viewHomePage')->middleware('auth')->name('home.page');
     Route::get('/login', 'viewLoginPage')->name('login.page');
+    Route::get('/register', 'viewRegisterPage')->name('register.page');
 });
 
 Route::controller(AuthController::class)->group(function () {
     Route::post('/login', 'login')->name('login.user');
+    Route::post('/register', 'register')->name('register.user');
 });
