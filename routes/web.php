@@ -24,4 +24,5 @@ Route::controller(PageController::class)->group(function () {
 Route::controller(AuthController::class)->group(function () {
     Route::post('/login', 'login')->name('login.user');
     Route::post('/register', 'register')->name('register.user');
+    Route::get('/logout', 'logout')->name('logout.user');
 });
