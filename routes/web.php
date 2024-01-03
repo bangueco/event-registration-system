@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,4 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::controller(PageController::class)->group(function () {
     Route::get('/', 'viewHomePage')->middleware('auth')->name('home.page');
     Route::get('/login', 'viewLoginPage')->name('login.page');
+});
+
+Route::controller(AuthController::class)->group(function () {
+    Route::post('/login', 'login')->name('login.user');
 });
