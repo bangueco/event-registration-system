@@ -19,4 +19,23 @@ class EventController extends Controller
 
         return redirect()->back();
     }
+
+    public function joinEvent(Request $r)
+    {
+        $user = Auth::user()->username;
+        $event = Event::where('_id', $r['id']);
+        $matched = false;
+
+        foreach ($event->get()[0]->participants as $participant) {
+            if (strcmp($participant, $user) == 0) {
+                $matched = true;
+            }
+        }
+
+        if ($matched) {
+            return 'You already joined this event!';
+        }
+        $event->push('participants', $user);
+        return 'Successfully joined event!';
+    }
 }

@@ -32,3 +32,5 @@ Route::controller(AuthController::class)->group(function () {
 Route::controller(EventController::class)->group(function () {
     Route::post('/manage/events', 'createEvent')->name('create.event');
 });
+
+Route::post('/', [EventController::class, 'joinEvent'])->name('join.event');
