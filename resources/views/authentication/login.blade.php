@@ -15,6 +15,7 @@
         <label for="password">Password:</label>
         <input type="password" name="password" id="password">
         <button>Login</button>
+        <p>Don't have account? <a href="{{ route('register.user') }}">Register</a> here</p>
     </form>
 </body>
 
