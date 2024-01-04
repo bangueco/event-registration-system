@@ -19,4 +19,32 @@
   </div>
   <button>Submit</button>
 </form>
+<h1>Your Events</h1>
+<div id="events__container">
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Event Name</th>
+        <th>Event By</th>
+        <th>Venue</th>
+        <th>Starting On</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach ($events as $key => $data)
+      <tr>
+        <td>{{$data->event_name}}</td>
+        <td>{{$data->event_by}}</td>
+        <td>{{$data->venue}}</td>
+        <td>{{$data->starting_on}}</td>
+        <td>
+          <button id="joinButton">Edit</button>
+          <button id="viewButton">Delete</button>
+        </td>
+      </tr>
+      @endforeach
+    </tbody>
+  </table>
+</div>
 @endsection

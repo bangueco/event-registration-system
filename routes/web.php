@@ -20,7 +20,7 @@ Route::controller(PageController::class)->group(function () {
     Route::get('/', 'viewHomePage')->middleware('auth')->name('home.page');
     Route::get('/login', 'viewLoginPage')->name('login.page');
     Route::get('/register', 'viewRegisterPage')->name('register.page');
-    Route::get('/manage/events', 'viewManageEvents')->middleware()->name('manage.events');
+    Route::get('/manage/events', 'viewManageEvents')->middleware('auth')->name('manage.events');
 });
 
 Route::controller(AuthController::class)->group(function () {

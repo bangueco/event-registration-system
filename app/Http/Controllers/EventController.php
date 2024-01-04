@@ -10,7 +10,6 @@ class EventController extends Controller
 {
     public function createEvent(Request $r)
     {
-        var_dump($r['starting_on']);
         Event::create([
             'event_name' => $r['event_name'],
             'event_by' => Auth::user()->username,
@@ -18,6 +17,6 @@ class EventController extends Controller
             'starting_on' => $r['starting_on'],
         ]);
 
-        return;
+        return redirect()->back();
     }
 }
