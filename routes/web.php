@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,10 +20,15 @@ Route::controller(PageController::class)->group(function () {
     Route::get('/', 'viewHomePage')->middleware('auth')->name('home.page');
     Route::get('/login', 'viewLoginPage')->name('login.page');
     Route::get('/register', 'viewRegisterPage')->name('register.page');
+    Route::get('/manage/events', 'viewManageEvents')->middleware()->name('manage.events');
 });
 
 Route::controller(AuthController::class)->group(function () {
     Route::post('/login', 'login')->name('login.user');
     Route::post('/register', 'register')->name('register.user');
     Route::get('/logout', 'logout')->name('logout.user');
+});
+
+Route::controller(EventController::class)->group(function () {
+    Route::post('/manage/events', 'createEvent')->name('create.event');
 });
