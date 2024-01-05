@@ -23,8 +23,8 @@
         <td>{{$data->venue}}</td>
         <td>{{$data->starting_on}}</td>
         <td>
-          <button id="joinButton" href="#" data-id=" {{ $data->_id    }}">Join</button>
-          <button id="viewButton" href="#">View</button>
+          <button class="joinButton" data-id=" {{ $data->_id    }}">Join</button>
+          <button class="viewButton" data-id="{{ $data->_id }}">View</button>
         </td>
       </tr>
       @endforeach
@@ -33,11 +33,11 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
 <script>
-  $(document).on('click', '#joinButton', function(e) {
+  $('.joinButton').click(function(e) {
     e.preventDefault();
     const url = "{{ route('join.event') }}";
     $.ajax({
-      type: "POST",
+      type: "PUT",
       url: url,
       data: {
         '_token': "{{csrf_token()}}",
@@ -46,6 +46,21 @@
 
       success: function(data) {
         alert(data);
+      }
+    })
+  })
+
+  $('.viewButton').click(function(e) {
+    e.preventDefault();
+    $.ajax({
+      type: "POST",
+      data: {
+        '_token': "{{csrf_token()}}",
+        'id': e.target.dataset.id
+      },
+
+      success: function(event) {
+        window.location.href = `{{ route('view.event') }}?id=${e.target.dataset.id} `
       }
     })
   })

@@ -14,6 +14,7 @@ class EventController extends Controller
             'event_name' => $r['event_name'],
             'event_by' => Auth::user()->username,
             'venue' => $r['venue'],
+            'participants' => [Auth::user()->username],
             'starting_on' => $r['starting_on'],
         ]);
 
@@ -35,7 +36,13 @@ class EventController extends Controller
         if ($matched) {
             return 'You already joined this event!';
         }
+
         $event->push('participants', $user);
         return 'Successfully joined event!';
+    }
+
+    public function getEventInfo(Request $r)
+    {
+        return Event::where('_id', $r['id'])->get()[0];
     }
 }

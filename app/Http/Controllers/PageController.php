@@ -29,4 +29,9 @@ class PageController extends Controller
         $userListOfEvents = Event::where('event_by', Auth::user()->username)->get();
         return view('pages.manage_events', ['events' => $userListOfEvents]);
     }
+
+    public function viewEventPage()
+    {
+        return view('pages.view_event');
+    }
 }
