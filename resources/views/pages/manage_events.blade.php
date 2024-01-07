@@ -39,12 +39,30 @@
         <td>{{$data->venue}}</td>
         <td>{{$data->starting_on}}</td>
         <td>
-          <button id="joinButton">Edit</button>
-          <button id="viewButton">Delete</button>
+          <button class="editButton" data-id="{{ $data->_id }}">Edit</button>
+          <button class="deleteButton" data-id="{{ $data->_id }}">Delete</button>
         </td>
       </tr>
       @endforeach
     </tbody>
   </table>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+<script>
+  $('.editButton').click(function(e) {
+    e.preventDefault();
+    $.ajax({
+      type: "POST",
+      url: "{{ route('get.event.info'); }}",
+      data: {
+        '_token': "{{csrf_token()}}",
+        'id': e.target.dataset.id
+      },
+
+      success: function(data) {
+        window.location.href = `{{ route('edit.event.page') }}?id=${data._id}&event_name=${data.event_name}&venue=${data.venue}&starting_on=${data.starting_on}`
+      }
+    });
+  })
+</script>
 @endsection

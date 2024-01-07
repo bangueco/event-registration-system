@@ -34,4 +34,9 @@ class PageController extends Controller
     {
         return view('pages.view_event');
     }
+
+    public function viewEditEventPage()
+    {
+        return view('pages.edit_event');
+    }
 }

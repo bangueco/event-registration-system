@@ -45,4 +45,14 @@ class EventController extends Controller
     {
         return Event::where('_id', $r['id'])->get()[0];
     }
+
+    public function editEvent(Request $r)
+    {
+        Event::where('_id', $r['id'])->update([
+            'event_name' => $r['event_name'],
+            'venue' => $r['venue'],
+            'starting_on' => $r['starting_on']
+        ]);
+        return redirect()->route('manage.events');
+    }
 }

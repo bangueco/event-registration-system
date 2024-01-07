@@ -22,6 +22,7 @@ Route::controller(PageController::class)->group(function () {
     Route::get('/register', 'viewRegisterPage')->name('register.page');
     Route::get('/manage/events', 'viewManageEvents')->middleware('auth')->name('manage.events');
     Route::get('/event/view', 'viewEventPage')->middleware('auth')->name('view.event');
+    Route::get('/event/edit', 'viewEditEventPage')->middleware('auth')->name('edit.event.page');
 });
 
 Route::controller(AuthController::class)->group(function () {
@@ -34,4 +35,5 @@ Route::controller(EventController::class)->group(function () {
     Route::post('/manage/events', 'createEvent')->name('create.event');
     Route::put('/', 'joinEvent')->name('join.event');
     Route::post('/', 'getEventInfo')->name('get.event.info');
+    Route::post('/event/edit', 'editEvent')->middleware('auth')->name('edit.event');
 });
