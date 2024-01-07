@@ -63,6 +63,23 @@
         window.location.href = `{{ route('edit.event.page') }}?id=${data._id}&event_name=${data.event_name}&venue=${data.venue}&starting_on=${data.starting_on}`
       }
     });
+  });
+
+  $('.deleteButton').click(function(e) {
+    e.preventDefault();
+    $.ajax({
+      type: "DELETE",
+      url: "{{ route('delete.event'); }}",
+      data: {
+        '_token': "{{csrf_token()}}",
+        'id': e.target.dataset.id
+      },
+
+      success: function(data) {
+        console.log("Delete success!");
+        window.location.href = "{{ route('manage.events') }}"
+      }
+    });
   })
 </script>
 @endsection

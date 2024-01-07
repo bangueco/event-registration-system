@@ -55,4 +55,9 @@ class EventController extends Controller
         ]);
         return redirect()->route('manage.events');
     }
+
+    public function delete(Request $r)
+    {
+        return Event::find($r['id'])->delete();
+    }
 }

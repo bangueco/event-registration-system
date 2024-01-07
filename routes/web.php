@@ -36,4 +36,5 @@ Route::controller(EventController::class)->group(function () {
     Route::put('/', 'joinEvent')->name('join.event');
     Route::post('/', 'getEventInfo')->name('get.event.info');
     Route::post('/event/edit', 'editEvent')->middleware('auth')->name('edit.event');
+    Route::delete('/manage/events', 'delete')->name('delete.event');
 });
