@@ -5,23 +5,23 @@
 @section('content')
 <form action="{{ route('create.event') }}" method="post">
   @csrf
-  <div>
-    <label for="event_name">Event Name: </label>
-    <input type="text" name="event_name" id="event_name">
+  <div class="mb-3">
+    <label class="form-label text-light" for="event_name">Event Name: </label>
+    <input class="form-control" type="text" name="event_name" id="event_name">
   </div>
-  <div>
-    <label for="venue">Venue: </label>
-    <input type="text" name="venue" id="venue">
+  <div class="mb-3">
+    <label class="form-label text-light" for="venue">Venue: </label>
+    <input class="form-control" type="text" name="venue" id="venue">
   </div>
-  <div>
-    <label for="starting_on">Starting On: </label>
-    <input type="date" name="starting_on" id="starting_on">
+  <div class="mb-3">
+    <label class="form-label text-light" for="starting_on">Starting On: </label>
+    <input class="form-control" type="date" name="starting_on" id="starting_on">
   </div>
-  <button>Submit</button>
+  <button class="btn btn-success">Submit</button>
 </form>
-<h1>Your Events</h1>
+<h1 class="p-3 text-center text-light">Your Events</h1>
 <div id="events__container">
-  <table border="1">
+  <table class="table table-dark text-center" border="1">
     <thead>
       <tr>
         <th>Event Name</th>
@@ -31,7 +31,7 @@
         <th>Action</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody class="table-secondary">
       @foreach ($events as $key => $data)
       <tr>
         <td>{{$data->event_name}}</td>
@@ -39,8 +39,9 @@
         <td>{{$data->venue}}</td>
         <td>{{$data->starting_on}}</td>
         <td>
-          <button class="editButton" data-id="{{ $data->_id }}">Edit</button>
-          <button class="deleteButton" data-id="{{ $data->_id }}">Delete</button>
+          <button class="editButton btn btn-info" data-id="{{ $data->_id }}">Edit</button>
+          |
+          <button class="deleteButton btn btn-danger" data-id="{{ $data->_id }}">Delete</button>
         </td>
       </tr>
       @endforeach

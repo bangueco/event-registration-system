@@ -3,10 +3,10 @@
 @section('title', 'Home')
 
 @section('content')
-<h1>Events</h1>
+<h1 class="p-3 text-center text-light">Events</h1>
 <div id="events__container">
-  <table border="1">
-    <thead>
+  <table class="table table-dark text-center" border="1">
+    <thead class="table-dark">
       <tr>
         <th>Event Name</th>
         <th>Event By</th>
@@ -15,7 +15,7 @@
         <th>Action</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody class="table-secondary">
       @foreach ($events as $key => $data)
       <tr>
         <td>{{$data->event_name}}</td>
@@ -23,8 +23,9 @@
         <td>{{$data->venue}}</td>
         <td>{{$data->starting_on}}</td>
         <td>
-          <button class="joinButton" data-id=" {{ $data->_id    }}">Join</button>
-          <button class="viewButton" data-id="{{ $data->_id }}">View</button>
+          <button class="joinButton btn btn-success" data-id=" {{ $data->_id    }}">Join</button>
+          |
+          <button class="viewButton btn btn-secondary" data-id="{{ $data->_id }}">View</button>
         </td>
       </tr>
       @endforeach
