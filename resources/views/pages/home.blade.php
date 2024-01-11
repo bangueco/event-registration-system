@@ -25,14 +25,35 @@
         <td>
           <button class="joinButton btn btn-success" data-id=" {{ $data->_id    }}">Join</button>
           |
-          <button class="viewButton btn btn-secondary" data-id="{{ $data->_id }}">View</button>
+          <button class="viewButton btn btn-secondary" data-id="{{ $data->_id }}" data-bs-toggle="modal" data-bs-target="#exampleModal">View</button>
         </td>
       </tr>
       @endforeach
     </tbody>
   </table>
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-primary-subtle">
+          <h1 class="event-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Event by: <span class="event-by"></span></p>
+          <p>Venue: <span class="venue"></span></p>
+          <p>Starting On: <span class="starting-on"></span></p>
+          <p>Participants: <span class="participants"></span></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+<script src="{{ asset('assets/javascript/bootstrap.min.js') }}"></script>
 <script>
   $('.joinButton').click(function(e) {
     e.preventDefault();
@@ -61,7 +82,11 @@
       },
 
       success: function(event) {
-        window.location.href = `{{ route('view.event') }}?id=${e.target.dataset.id} `
+        $('.event-title').text(event.event_name)
+        $('.event-by').text(event.event_by);
+        $('.venue').text(event.venue);
+        $('.starting-on').text(event.starting_on);
+        $('.participants').text(event.participants.length);
       }
     })
   })
